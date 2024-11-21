@@ -1,0 +1,104 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Base styling for the slider */
+.slider {
+  -webkit-appearance: none; /* Remove default browser styles */
+  appearance: none;
+  height: 4px; /* Slim slider height */
+  background: #b3b3b3; /* Gray background for seek line */
+  border-radius: 2px;
+  outline: none; /* Remove focus outline */
+  position: relative;
+  cursor: pointer;
+}
+
+/* Progress bar (before the thumb) */
+.slider::-webkit-slider-runnable-track {
+  background: #b3b3b3; /* Gray background for unfilled portion */
+  border-radius: 4px;
+  height: 4px;
+  position: relative;
+}
+
+.slider::-moz-range-track {
+  background: #b3b3b3;
+  border-radius: 2px;
+  height: 4px;
+}
+
+.slider::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+  height: 4px;
+}
+
+/* Custom progress fill for Chrome/Safari */
+.slider::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    #ffffff calc(var(--value, 0) * 100%),
+    #ffffff calc(var(--value, 0) * 100%),
+    #ffffff 100%
+  );
+}
+
+/* Style the slider thumb (seek dot) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px; /* Size of seek dot */
+  height: 12px;
+  background: #ffffff; /* White seek dot */
+  border-radius: 50%; /* Rounded dot */
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin-top: -4px; /* Center the thumb with the track */
+}
+
+.slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.slider::-ms-thumb {
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Ensure thumb aligns properly with track */
+.slider::-webkit-slider-thumb {
+  margin-top: -4px; /* Align thumb to center of the track */
+}
+
+.slider::-moz-range-thumb {
+  margin-top: -4px;
+}
+
+/* Optional hover effects */
+.slider:hover::-webkit-slider-thumb {
+  background: #ffffff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.video-container {
+  video {
+    object-fit: fill;
+    overflow: hidden;
+  }
+}
