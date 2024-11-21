@@ -18,6 +18,7 @@ import MuteIconSvg from "../../assets/vectors/mute.svg";
 
 import CropperGrid from "../CropperGrid/CropperGrid";
 import VideoPreview from "../VideoPreview/VideoPreview";
+import { PlayBackData } from "../../types";
 
 interface TimeDisplayProps {
   currentTime: number;
@@ -46,20 +47,15 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
   );
 };
 
-interface PlayBackData {
-  timeStamp: number;
-  coordinates: [number, number, number, number];
-  volume: number;
-  playbackRate: number;
-}
-
 const VideoPlayer: FC = () => {
   const {
     selectedVideo,
     aspectRatio,
     cropperStarted,
+    data,
     setAspectRatio,
     setCropperStarted,
+    setData,
   } = useVideoContext();
   const playerRef = useRef<ReactPlayer | null>(null);
   const parentRef = useRef<HTMLDivElement>(null);
@@ -82,7 +78,6 @@ const VideoPlayer: FC = () => {
   });
 
   const [volume, setVolume] = useState(0.8);
-  const [data, setData] = useState<PlayBackData[]>([]);
 
   const updateCanvas = useCallback(() => {
     if (canvasRef?.current && playerRef?.current) {
@@ -133,7 +128,7 @@ const VideoPlayer: FC = () => {
         volume: volume,
         playbackRate: parseFloat(playbackRate),
       };
-      setData((prevData) => {
+      setData((prevData: PlayBackData[]) => {
         if (prevData && prevData?.length > 0) {
           return [...prevData, newEntry];
         } else {
@@ -147,6 +142,7 @@ const VideoPlayer: FC = () => {
       cropState.x,
       cropState.y,
       playbackRate,
+      setData,
       volume,
     ]
   );

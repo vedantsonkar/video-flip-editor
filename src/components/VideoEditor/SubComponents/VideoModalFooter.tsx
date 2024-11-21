@@ -1,6 +1,7 @@
 import { FC, useCallback } from "react";
 import Button from "../../Button";
 import { useVideoContext } from "../../../context/videoContext";
+import { uploadVideoToServer } from "../../../services";
 
 interface VideoModalFooterPropTypes {
   setIsModalOpen: (isModalOpen: boolean) => void;
@@ -9,13 +10,26 @@ interface VideoModalFooterPropTypes {
 const VideoModalFooter: FC<VideoModalFooterPropTypes> = ({
   setIsModalOpen,
 }) => {
-  const { cropperStarted, setCropperStarted, setSelectedVideo } =
-    useVideoContext();
+  const {
+    cropperStarted,
+    selectedVideo,
+    data,
+    setCropperStarted,
+    setSelectedVideo,
+  } = useVideoContext();
 
   const onCancel = useCallback(() => {
     setSelectedVideo(null);
     setIsModalOpen(false);
   }, [setIsModalOpen, setSelectedVideo]);
+
+  const uploadToServer = useCallback(async () => {
+    const response = await uploadVideoToServer({
+      video: selectedVideo,
+      timestampData: data,
+    });
+    console.log("Response", response);
+  }, [data, selectedVideo]);
 
   return (
     <div
@@ -41,7 +55,7 @@ const VideoModalFooter: FC<VideoModalFooterPropTypes> = ({
           }}
           disabled={!cropperStarted}
         />
-        <Button label="Generate Preview" onClick={onCancel} disabled />
+        <Button label="Generate Preview" onClick={uploadToServer} />
       </div>
       <Button label="Cancel" onClick={onCancel} variant="secondary" />
     </div>
