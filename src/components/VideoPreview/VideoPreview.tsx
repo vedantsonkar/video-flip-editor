@@ -22,7 +22,7 @@ const VideoPreview: FC<VideoPreviewPropTypes> = ({
 
   // Precomputed styles
   const containerClass = twMerge(
-    "gap-y-4 basis-1/2 text-center",
+    "gap-y-4 basis-1/2 text-center mx-auto",
     cropperStarted ? "flex flex-col" : "grid grid-rows-3"
   );
 
@@ -34,7 +34,7 @@ const VideoPreview: FC<VideoPreviewPropTypes> = ({
     : { width: "100%", height: "100%" };
 
   const fallbackPreview = (
-    <div className="flex flex-col items-center justify-center text-center h-full gap-y-2 w-1/2 m-auto grow">
+    <div className="flex flex-col items-center justify-center text-center h-full gap-y-2 w-1/2 m-auto grow mx-auto">
       <img src={PreviewSvg} title="Preview" aria-label="Preview" />
       <p className="text-white font-bold text-sm">Preview not available</p>
       <p className="text-white text-sm text-opacity-50">
