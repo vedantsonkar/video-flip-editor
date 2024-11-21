@@ -10,4 +10,4 @@ while recording these changes into a json file which is saved to user device on 
 
 ## Live Website Link
 
-URL: (to be updated)
+URL: https://videoflipeditor.netlify.app/
