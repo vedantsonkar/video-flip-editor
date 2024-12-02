@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react";
 import Button from "../../Button";
 import { useVideoContext } from "../../../context/videoContext";
-import { uploadVideoToServer } from "../../../services";
+// import { uploadVideoToServer } from "../../../services";
 
 interface VideoModalFooterPropTypes {
   setIsModalOpen: (isModalOpen: boolean) => void;
@@ -12,10 +12,11 @@ const VideoModalFooter: FC<VideoModalFooterPropTypes> = ({
 }) => {
   const {
     cropperStarted,
-    selectedVideo,
-    data,
+    // selectedVideo,
+    // data,
     setCropperStarted,
     setSelectedVideo,
+    setSelectedTab,
   } = useVideoContext();
 
   const onCancel = useCallback(() => {
@@ -23,13 +24,13 @@ const VideoModalFooter: FC<VideoModalFooterPropTypes> = ({
     setIsModalOpen(false);
   }, [setIsModalOpen, setSelectedVideo]);
 
-  const uploadToServer = useCallback(async () => {
-    const response = await uploadVideoToServer({
-      video: selectedVideo,
-      timestampData: data,
-    });
-    console.log("Response", response);
-  }, [data, selectedVideo]);
+  // const uploadToServer = useCallback(async () => {
+  //   const response = await uploadVideoToServer({
+  //     video: selectedVideo,
+  //     timestampData: data,
+  //   });
+  //   console.log("Response", response);
+  // }, [data, selectedVideo]);
 
   return (
     <div
@@ -55,7 +56,10 @@ const VideoModalFooter: FC<VideoModalFooterPropTypes> = ({
           }}
           disabled={!cropperStarted}
         />
-        <Button label="Generate Preview" onClick={uploadToServer} />
+        <Button
+          label="Generate Preview"
+          onClick={() => setSelectedTab("Preview Session")}
+        />
       </div>
       <Button label="Cancel" onClick={onCancel} variant="secondary" />
     </div>

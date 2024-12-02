@@ -11,6 +11,9 @@ const App = () => {
   const [aspectRatio, setAspectRatio] = useState("9:18");
   const [cropperStarted, setCropperStarted] = useState(false);
   const [data, setData] = useState<PlayBackData[]>([]);
+  const [selectedTab, setSelectedTab] = useState<
+    "Preview Session" | "Generate Session"
+  >("Generate Session");
 
   return (
     <VideoContext.Provider
@@ -24,6 +27,8 @@ const App = () => {
         setCropperStarted,
         data,
         setData,
+        selectedTab,
+        setSelectedTab,
       }}
     >
       <HomePage />

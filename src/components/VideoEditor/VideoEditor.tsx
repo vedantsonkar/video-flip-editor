@@ -1,9 +1,10 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import Modal from "../Modal";
 import VideoModalHeader from "./SubComponents/VideoModalHeader";
 import VideoModalFooter from "./SubComponents/VideoModalFooter";
 import VideoModalBody from "./SubComponents/VideoModalBody";
 import { useVideoContext } from "../../context/videoContext";
+import GeneratedPreview from "../VideoPreview/GeneratedPreview";
 
 interface VideoEditorModalPropTypes {
   isModalOpen: boolean;
@@ -14,10 +15,9 @@ const VideoEditorModal: FC<VideoEditorModalPropTypes> = ({
   isModalOpen,
   setIsModalOpen,
 }) => {
-  const { setSelectedVideo } = useVideoContext();
-  const [selectedTab, setSelectedTab] = useState<
-    "Preview Session" | "Generate Session"
-  >("Preview Session");
+  const { selectedTab, data, setSelectedTab, setSelectedVideo } =
+    useVideoContext();
+
   return (
     <Modal
       isOpen={isModalOpen}
@@ -30,14 +30,22 @@ const VideoEditorModal: FC<VideoEditorModalPropTypes> = ({
       <div
         id="video-editor-modal"
         aria-label="video-editor-modal"
-        className="px-5 py-[1.563rem]"
+        className="px-5 py-[1.563rem] h-full"
       >
         <VideoModalHeader
           setSelectedTab={setSelectedTab}
           selectedTab={selectedTab}
         />
-        <VideoModalBody />
-        <VideoModalFooter setIsModalOpen={setIsModalOpen} />
+        {selectedTab === "Generate Session" ? (
+          <>
+            <VideoModalBody />
+            <VideoModalFooter setIsModalOpen={setIsModalOpen} />
+          </>
+        ) : (
+          <>
+            <GeneratedPreview data={data} />
+          </>
+        )}
       </div>
     </Modal>
   );

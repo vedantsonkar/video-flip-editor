@@ -240,7 +240,7 @@ const VideoPlayer: FC = () => {
       <div className="flex flex-col gap-y-4 basis-1/2 max-w-[28.75rem]">
         <div
           ref={parentRef}
-          className="video-container relative w-[28.75rem] h-[19.188rem]"
+          className="video-container relative w-full h-full aspect-[14375/9594] max-h-[19.188rem]"
         >
           {videoUrl ? (
             <>

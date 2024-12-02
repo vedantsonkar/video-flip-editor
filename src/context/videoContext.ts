@@ -12,6 +12,8 @@ interface VideoContextProps {
   setCropperStarted: (cropperStarted: boolean) => void;
   data: PlayBackData[];
   setData: React.Dispatch<React.SetStateAction<PlayBackData[]>>;
+  selectedTab: "Preview Session" | "Generate Session";
+  setSelectedTab: (selectedTab: "Preview Session" | "Generate Session") => void;
 }
 
 const VideoContext = createContext<VideoContextProps>({
@@ -20,10 +22,12 @@ const VideoContext = createContext<VideoContextProps>({
   aspectRatio: "9:18",
   cropperStarted: false,
   data: [],
+  selectedTab: "Generate Session",
   setSelectedVideo: () => {},
   setAspectRatio: () => {},
   setCropperStarted: () => {},
   setData: () => {},
+  setSelectedTab: () => {},
 });
 
 export const useVideoContext = () => useContext(VideoContext);

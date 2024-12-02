@@ -22,7 +22,7 @@ const Modal: React.FC<ModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="bg-darkgrey rounded-[0.625rem] shadow-lg p-6 relative text-white max-w-[90vw] max-h-[90vh] min-w-[50vw]"
+        className="bg-darkgrey rounded-[0.625rem] shadow-lg p-6 relative text-white max-w-[90vw] max-h-[90vh] min-w-[50vw] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {showCloseIcon && (

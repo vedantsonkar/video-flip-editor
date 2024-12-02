@@ -16,7 +16,6 @@ function Home() {
 
   const handleFileChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      console.log("ran");
       const file = event.target.files?.[0];
       if (!file) {
         return;
